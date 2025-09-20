@@ -5,6 +5,10 @@
 trigger:
 - main
 
+pool:
+  name: agent_ayesha
+  demands:
+    - agent.name -equals agent_ayesha_linux   # run only on this agent
 resources:
 - repo: self
 
@@ -16,17 +20,13 @@ variables:
   dockerfilePath: '$(Build.SourcesDirectory)/backend/Dockerfile'
   tag: '$(Build.BuildId)'
 
-  # Agent VM image name
-  name: 'agent_ayesha'
-
 stages:
 - stage: Build
   displayName: Build and push stage
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      name: $(agent_ayesha)
+
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
