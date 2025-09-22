@@ -1,3 +1,5 @@
+
+
 # Docker
 # Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
@@ -10,13 +12,13 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '5f3383d2-6ec4-47ce-a12f-e7b30c9eaa74'
-  imageRepository: 'ksayeshasiddiqaproject'
-  containerRegistry: 'ksalinuxacr.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  dockerRegistryServiceConnection: '238f1b4e-d926-4be4-8cd5-e1f12ee750b7'
+  imageRepository: 'ksayeshasiddiqaamazonwarfile'
+  containerRegistry: 'containerregistryksa.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Amazon/Dockerfile'
   tag: '$(Build.BuildId)'
 
-  # Agent VM image name
+pool:
   name: 'agent_ayesha'
   demands:
     - agent.name -equals agent_ayesha_linux
@@ -28,10 +30,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      #vmImage: $(vmImageName)
       name: 'agent_ayesha'
-      demands:
-        - agent.name -equals agent_ayesha_linux
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
