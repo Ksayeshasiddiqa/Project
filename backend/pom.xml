@@ -4,7 +4,8 @@
     <artifactId>backend</artifactId>
     <name>backend</name>
     <description>Project App using Spring boot - Backend</description>
-    <packaging>jar</packaging>
+    <!-- <packaging>jar</packaging> -->
+	<packaging>war</packaging>
     <version>1.0-RELEASE</version>
     <parent>
         <groupId>adi</groupId>
