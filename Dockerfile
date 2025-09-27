@@ -1,20 +1,20 @@
-# Use official Tomcat 9 with JDK 11 base image
+# 1️⃣ Use official Tomcat 9 with JDK 11 as base image
 FROM tomcat:9.0-jdk11-openjdk
 
-# Labels for Azure DevOps metadata (optional)
+# 2️⃣ Optional: Add Azure DevOps metadata labels
 LABEL com.azure.dev.image.build.repository.name="Ksayeshasiddiqa/Project"
 LABEL com.azure.dev.image.build.sourcebranchname="main"
-LABEL com.azure.dev.image.build.buildnumber="684"
+LABEL com.azure.dev.image.build.buildnumber="686"
 
-# Remove default Tomcat webapps
+# 3️⃣ Remove default Tomcat webapps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy WAR file from build output into Tomcat webapps
-# Make sure your WAR file is at 'target/amazon.war'
+# 4️⃣ Copy WAR file from Maven build into Tomcat webapps
+# Ensure WAR file is at 'target/amazon.war' relative to Docker build context
 COPY target/amazon.war /usr/local/tomcat/webapps/ROOT.war
 
-# Expose Tomcat port
+# 5️⃣ Expose Tomcat port
 EXPOSE 8080
 
-# Start Tomcat
+# 6️⃣ Start Tomcat
 CMD ["catalina.sh", "run"]
